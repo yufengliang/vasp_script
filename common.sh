@@ -2,6 +2,8 @@
 
 relax_done_msg="reached required accuracy - stopping structural energy minimisation"
 scf_done_msg="aborting loop because EDIFF is reached"
+file_separator="======================================================================"
+job_separator="----------------------------------------------------------------------"
 
 function electronic_incar() {
   cat >> INCAR << EOF

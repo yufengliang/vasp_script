@@ -25,6 +25,7 @@ EOF
 
 function run_relax() {
 
+  echo $job_separator
   echo "Job = $job"
   RELAX_OK=0
 
@@ -87,7 +88,9 @@ EOF
   ln -sf ../POTCAR ./
 
   # RUN !
- 
+  echo $VASP_PREFIX $VASP
+  $VASP_PREFIX $VASP  || echo vasp is broken
+
   # Check
   hit=`grep "${relax_done_msg}" OUTCAR|wc -l`
   if [ $hit -ge 1 ]; then

@@ -16,17 +16,17 @@
         RUNENV=PBS
         HOMEDIR=$PBS_O_WORKDIR
         PPN=`wc -l $PBS_NODEFILE | awk '{print $1}'`
-        PREFIX="aprun -n $PPN"
+        VASP_PREFIX="aprun -n $PPN"
   elif [[ -n $SLURM_SUBMIT_DIR ]]; then
         RUNENV=SLURM
         HOMEDIR=$SLURM_SUBMIT_DIR
         PPN=$SLURM_NPROCS
-        PREFIX="mpirun -np $PPN"
+        VASP_PREFIX="mpirun -np $PPN"
   else
         HOMEDIR="./"
         PPN=1
         RUNENV=
-        PREFIX=
+        VASP_PREFIX=
   fi
 
   cd $HOMEDIR
@@ -52,7 +52,10 @@
   for file in $FILE; do
    if [ -f $file ]; then
 
+     echo $file_separator
      echo Processing $file ...
+     echo $file_separator
+
      dir=`echo $file|awk 'BEGIN{FS="."}; {print $1}'`
      mkdir -p $dir
      cp $file $dir/POSCAR
@@ -60,9 +63,10 @@
 
      # construct POTCAR
      shopt -s nocasematch
-     if [[ "$JOB" == *"RELAX"* ]] || [[ "$JOB" == *"SCF"* ]]; then 
-       build_pseudo
-     fi
+     case $JOB in
+       *"RELAX"*|*"RELAX_2D"*|*"MD"*|*"SCF"*|*"BAND"*|*"DOS"*|*"GW"* ) 
+       build_pseudo ;;
+     esac
      shopt -u nocasematch
 
      # loop over the job sequence
@@ -70,6 +74,7 @@
        shopt -s nocasematch
        case $job in
          "RELAX"      ) run_relax    ;;
+         "RELAX_2D"   ) ;;
          "MD"         ) ;;
          "SCF"        ) run_scf      ;;
          "BAND"       ) ;;

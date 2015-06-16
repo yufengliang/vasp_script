@@ -15,7 +15,8 @@ EOF
 }
 
 function run_scf() {
-  
+ 
+  echo $job_separator 
   echo "Job = $job"
   SCF_OK=0
   
@@ -85,7 +86,9 @@ EOF
   ln -sf ../POTCAR ./
 
   # RUN !
- 
+  echo $VASP_PREFIX $VASP
+  $VASP_PREFIX $VASP || echo vasp is broken
+
   # Check
   hit=`grep "${scf_done_msg}" OUTCAR|wc -l`
   if [ $hit -ge 1 ]; then
