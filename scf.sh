@@ -31,7 +31,7 @@ function run_scf() {
       return
     else
       echo "Obtain POSCAR from CONTCAR after relaxation."
-      cp -pf ../relax/CONTCAR ../POSCAR
+      cp -pf ../relax/CONTCAR ./POSCAR
     fi
   else
     echo "Obtain POSCAR as input. "

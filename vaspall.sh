@@ -64,7 +64,7 @@
      # construct POTCAR
      shopt -s nocasematch
      case $JOB in
-       *"RELAX"*|*"RELAX_2D"*|*"MD"*|*"SCF"*|*"BAND"*|*"DOS"*|*"GW"* ) 
+       *"RELAX"*|*"RELAX_2D"*|*"MD"*|*"SCF"*|*"BANDS"*|*"DOS"*|*"GW"* ) 
        build_pseudo ;;
      esac
      shopt -u nocasematch
@@ -77,7 +77,7 @@
          "RELAX_2D"   ) ;;
          "MD"         ) ;;
          "SCF"        ) run_scf      ;;
-         "BAND"       ) ;;
+         "BANDS"       ) ;;
          "DOS"        ) ;; # run_dos   ;;
          "STATE"      ) ;; # run_state ;;
          "GW"         ) ;;
