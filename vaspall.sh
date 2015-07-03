@@ -64,10 +64,13 @@
      # construct POTCAR
      shopt -s nocasematch
      case $JOB in
-       *"RELAX"*|*"RELAX_2D"*|*"MD"*|*"SCF"*|*"BANDS"*|*"DOS"*|*"GW"* ) 
+       *"RELAX"*|*"RELAX_2D"*|*"MD"*|*"SCF"*|*"BANDS"*|*"GW"* ) 
        build_pseudo ;;
      esac
      shopt -u nocasematch
+
+     # reset variables according to $job
+     reset_variables
 
      # loop over the job sequence
      for job in $JOB; do
@@ -77,8 +80,7 @@
          "RELAX_2D"   ) ;;
          "MD"         ) ;;
          "SCF"        ) run_scf      ;;
-         "BANDS"       ) ;;
-         "DOS"        ) ;; # run_dos   ;;
+         "BANDS"      ) run_bands    ;;
          "STATE"      ) ;; # run_state ;;
          "GW"         ) ;;
          *            ) unknown_job ;;

@@ -5,34 +5,82 @@ scf_done_msg="aborting loop because EDIFF is reached"
 file_separator="======================================================================"
 job_separator="----------------------------------------------------------------------"
 
-function electronic_incar() {
-  cat >> INCAR << EOF
+function reset_variables() {
+
 # Electronic Relaxation
 
-NELECT      =   $NELECT
-PREC        =   $PREC
-ENCUT       =   $ENCUT
-ISMEAR      =   $ISMEAR
-SIGMA       =   $SIGMA
-LASPH       =   $LASPH
-IVDW        =   $IVDW
+TMP_NELECT=$NELECT
+TMP_PREC=$PREC
+TMP_ENCUT=$ENCUT
+TMP_ISMEAR=$ISMEAR
+TMP_SIGMA=$SIGMA
+TMP_LASPH=$LASPH
+TMP_IVDW=$IVDW
 
 # Magnetism
 
-ISPIN       =   $ISPIN
+TMP_ISPIN=$ISPIN
 
 # LDA+U
 
-LDAU        =   $LDAU
-LDAUTYPE    =   $LDAUTYPE
-LDAUU       =   $LDAUU
+TMP_LDAU=$LDAU
+TMP_LDAUTYPE=$LDAUTYPE
+TMP_LDAUU=$LDAUU
 
 # Electronic Relaxation Control
 
-NELM        =   $NELM
-NELMIN      =   $NELMIN
-EDIFF       =   $EDIFF
+TMP_NELM=$NELM
+TMP_NELMIN=$NELMIN
+TMP_EDIFF=$EDIFF
 
+# Ionic Relaxation
+
+TMP_IBRION=$IBRION
+TMP_EDIFFG=$EDIFFG
+TMP_ISIF=$ISIF
+TMP_ISYM=$ISYM
+TMP_NSW=$NSW
+
+# Print Control
+
+TMP_LVTOT=$LVTOT
+TMP_LORBIT=$LORBIT
+}
+
+function electronic_incar() {
+
+  # Update reset_variables when you edit this
+  cat >> INCAR << EOF
+# Electronic Relaxation
+
+NELECT      =   $TMP_NELECT
+PREC        =   $TMP_PREC
+ENCUT       =   $TMP_ENCUT
+ISMEAR      =   $TMP_ISMEAR
+SIGMA       =   $TMP_SIGMA
+LASPH       =   $TMP_LASPH
+IVDW        =   $TMP_IVDW
+
+# Magnetism
+
+ISPIN       =   $TMP_ISPIN
+
+# LDA+U
+
+LDAU        =   $TMP_LDAU
+LDAUTYPE    =   $TMP_LDAUTYPE
+LDAUU       =   $TMP_LDAUU
+
+# Electronic Relaxation Control
+
+NELM        =   $TMP_NELM
+NELMIN      =   $TMP_NELMIN
+EDIFF       =   $TMP_EDIFF
+
+# Print Control
+
+LVTOT       =   $TMP_LVTOT
+LORBIT      =   $TMP_LORBIT
 EOF
 }
 

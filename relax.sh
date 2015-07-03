@@ -12,14 +12,16 @@ EOF
 
   electronic_incar
 
+  # Update reset_variables when you edit this
   cat >> INCAR << EOF
 # Ionic Relaxation
 
-IBRION      =   1
-EDIFFG      =   $EDIFFG
-ISIF        =   $ISIF
-ISYM        =   $ISYM
-NSW         =   $NSW
+IBRION      =   $TMP_IBRION
+EDIFFG      =   $TMP_EDIFFG
+ISIF        =   $TMP_ISIF
+ISYM        =   $TMP_ISYM
+NSW         =   $TMP_NSW
+
 EOF
 }
 
