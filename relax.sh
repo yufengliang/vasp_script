@@ -23,6 +23,8 @@ ISYM        =   $TMP_ISYM
 NSW         =   $TMP_NSW
 
 EOF
+
+  clean_incar INCAR
 }
 
 function run_relax() {
@@ -90,8 +92,8 @@ EOF
   ln -sf ../POTCAR ./
 
   # RUN !
-  echo $VASP_PREFIX $VASP
-  $VASP_PREFIX $VASP  || echo vasp is broken
+  echo $VASP_PREFIX $VASP "> stdout"
+  $VASP_PREFIX $VASP > stdout || echo vasp is broken
 
   # Check
   hit=`grep "${relax_done_msg}" OUTCAR|wc -l`

@@ -6,11 +6,6 @@
   # Input block
   INPBLK=vasp.in
 
-  # Check the script folder
-  if [ -z $SCRIPT_ROOT ]; then
-    SCRIPT_ROOT="."
-  fi
-
   # Obtain the current directory
   if [[ -n $PBS_O_WORKDIR ]]; then
         RUNENV=PBS
@@ -35,6 +30,11 @@
 
   # Import functional scripts
   . $HOMEDIR/$INPBLK
+  # Check the script folder. If not defined, use the current folder
+  if [ -z $SCRIPT_ROOT ]; then
+    SCRIPT_ROOT="."
+  fi
+
   . $SCRIPT_ROOT/common.sh
   . $SCRIPT_ROOT/pseudo.sh
   . $SCRIPT_ROOT/relax.sh
