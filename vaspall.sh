@@ -39,6 +39,7 @@
   . $SCRIPT_ROOT/pseudo.sh
   . $SCRIPT_ROOT/relax.sh
   . $SCRIPT_ROOT/scf.sh
+  . $SCRIPT_ROOT/bands.sh
 
 #  ======================================================================
 #  Run, Forest, Run !
@@ -52,14 +53,15 @@
   for file in $FILE; do
    if [ -f $file ]; then
 
+     echo 
      echo $file_separator
      echo Processing $file ...
      echo $file_separator
 
-     dir=`echo $file|awk 'BEGIN{FS="."}; {print $1}'`
-     mkdir -p $dir
-     cp $file $dir/POSCAR
-     cd $dir
+     posname=`echo $file|awk 'BEGIN{FS="."}; {print $1}'`
+     mkdir -p $posname
+     cp $file $posname/POSCAR
+     cd $posname
 
      # construct POTCAR
      shopt -s nocasematch

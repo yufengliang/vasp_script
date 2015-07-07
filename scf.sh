@@ -3,7 +3,7 @@
 function scf_incar_gen() {
   cat > INCAR << EOF
 # Job Control
-SYSTEM      =   $dir
+SYSTEM      =   $posname
 ISTART      =   $ISTART
 ICHARG      =   $ICHARG
 INIWAV      =   $INIWAV
@@ -28,6 +28,7 @@ function run_scf() {
   if [[ $JOB == *"RELAX"* ]]; then
     if  [ $RELAX_OK -eq 0 ]; then
       echo "Relaxation not completed. SCF aborted !"
+      cd ../
       return
     else
       echo "Obtain POSCAR from CONTCAR after relaxation."
@@ -69,25 +70,25 @@ function run_scf() {
     fi
   fi
 
+  # INCAR
   scf_incar_gen  
 
   # KPOINTS
   if [ -z $SCF_KPOINTS ]; then
-    KPOINTS_=$KPOINTS
+    TMP_KPOINTS=$KPOINTS
   else
-    KPOINTS_=$SCF_KPOINTS
+    TMP_KPOINTS=$SCF_KPOINTS
   fi
 
     cat > KPOINTS << EOF
-$KPOINTS_
+$TMP_KPOINTS
 EOF
 
   # POTCAR
   ln -sf ../POTCAR ./
 
   # RUN !
-  echo $VASP_PREFIX $VASP
-  $VASP_PREFIX $VASP || echo vasp is broken
+  vasp_run
 
   # Check
   hit=`grep "${scf_done_msg}" OUTCAR|wc -l`
@@ -97,6 +98,5 @@ EOF
   fi
 
   cd ../
-
 
 }

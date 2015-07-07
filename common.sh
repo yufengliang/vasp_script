@@ -110,6 +110,7 @@ EDIFF       =   $TMP_EDIFF
 
 LVTOT       =   $TMP_LVTOT
 LORBIT      =   $TMP_LORBIT
+
 EOF
   
   clean_incar INCAR
@@ -123,3 +124,10 @@ function filesize() {
 function unknown_job() {
   echo "Unknown job $job. Skip it !"
 }
+
+function vasp_run() {
+  echo $VASP_PREFIX $VASP "> stdout"
+  $VASP_PREFIX $VASP > stdout || echo vasp is broken
+  cp stdout $HOMEDIR/${posname}.${job}.stdout
+}
+

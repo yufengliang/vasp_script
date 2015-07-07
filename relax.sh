@@ -3,7 +3,7 @@
 function relax_incar_gen() {
   cat > INCAR << EOF
 # Job Control
-SYSTEM      =   $dir
+SYSTEM      =   $posname
 ISTART      =   $ISTART
 ICHARG      =   $ICHARG
 INIWAV      =   $INIWAV
@@ -79,21 +79,20 @@ function run_relax() {
 
   # KPOINTS
   if [ -z $RELAX_KPOINTS ]; then
-    KPOINTS_=$KPOINTS
+    TMP_KPOINTS=$KPOINTS
   else
-    KPOINTS_=$RELAX_KPOINTS
+    TMP_KPOINTS=$RELAX_KPOINTS
   fi
 
     cat > KPOINTS << EOF
-$KPOINTS_
+$TMP_KPOINTS
 EOF
 
   # POTCAR
   ln -sf ../POTCAR ./
 
   # RUN !
-  echo $VASP_PREFIX $VASP "> stdout"
-  $VASP_PREFIX $VASP > stdout || echo vasp is broken
+  vasp_run
 
   # Check
   hit=`grep "${relax_done_msg}" OUTCAR|wc -l`
