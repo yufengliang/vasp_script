@@ -2,6 +2,7 @@
 
 relax_done_msg="reached required accuracy - stopping structural energy minimisation"
 scf_done_msg="aborting loop because EDIFF is reached"
+bands_done_msg="aborting loop because EDIFF is reached"
 file_separator="======================================================================"
 job_separator="----------------------------------------------------------------------"
 
@@ -127,7 +128,7 @@ function unknown_job() {
 
 function vasp_run() {
   echo $VASP_PREFIX $VASP "> stdout"
-  $VASP_PREFIX $VASP > stdout || echo vasp is broken
-  cp stdout $HOMEDIR/${posname}.${job}.stdout
+  $VASP_PREFIX $VASP > stdout
+  cp stdout $HOMEDIR/${posname}.${job,,}.stdout
 }
 

@@ -48,6 +48,7 @@
   count=0
   RELAX_OK=0
   SCF_OK=0
+  BANDS_OK=0
 
   # loop over POSCAR files
   for file in $FILE; do
@@ -58,7 +59,7 @@
      echo Processing $file ...
      echo $file_separator
 
-     posname=`echo $file|awk 'BEGIN{FS="."}; {print $1}'`
+     posname=`echo $(basename $file)|awk 'BEGIN{FS="."}; {print $1}'`
      mkdir -p $posname
      cp $file $posname/POSCAR
      cd $posname

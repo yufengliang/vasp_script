@@ -1,0 +1,10 @@
+Simple Cubic Lattice (CUB) G-X-M-G-R-X M-R
+1 0 0 
+0 1 0
+0 0 1
+G 0.0 0.0 0.0
+X 0.5 0.0 0.0
+M 0.5 0.5 0.0
+R 0.5 0.5 0.5 
+G X M G R X M R
+  
