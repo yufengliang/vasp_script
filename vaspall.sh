@@ -88,7 +88,7 @@
           "SCF"        ) run_scf      ;;
           "BANDS"      ) run_bands    ;;
           "DOS"        ) run_dos      ;;
-          "STATE"      ) run_states   ;;
+          "STATES"     ) run_states   ;;
           "GW"         ) ;;
           *            ) unknown_job  ;;
         esac
