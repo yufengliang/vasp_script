@@ -70,7 +70,7 @@ TMP_LVTOT=$LVTOT
 fi
 
 if [ -z $LORBIT ]; then
-TMP_LORBIT=.FALSE.
+TMP_LORBIT=0
 else
 TMP_LORBIT=$LORBIT
 fi
@@ -94,6 +94,7 @@ IVDW        =   $TMP_IVDW
 # Magnetism
 
 ISPIN       =   $TMP_ISPIN
+MAGMOM      =   $TMP_MAGMOM
 
 # LDA+U
 

@@ -21,7 +21,10 @@ run_dos() {
     cd ../
     return
   else
-    $VTSTSCRIPTS/split_dos.py
+    # Use this temporarily
+    $VTSTSCRIPTS/split_dos
   fi
+
+  cd ../
 }
  
