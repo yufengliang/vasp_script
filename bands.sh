@@ -25,7 +25,7 @@ run_bands() {
   shopt -s nocasematch
   if [[ $JOB == *"SCF"* ]]; then
     if [ $SCF_OK -eq 0 ]; then
-      echo "SCF not completed. Go back and check it !"
+      echo "SCF not completed. Go back to check it !"
       cd ../
       return
     else

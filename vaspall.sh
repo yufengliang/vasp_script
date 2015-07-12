@@ -40,6 +40,7 @@
   . $SCRIPT_ROOT/relax.sh
   . $SCRIPT_ROOT/scf.sh
   . $SCRIPT_ROOT/bands.sh
+  . $SCRIPT_ROOT/dos.sh
 
 #  ======================================================================
 #  Run, Forest, Run !
@@ -84,6 +85,7 @@
           "MD"         ) ;;
           "SCF"        ) run_scf      ;;
           "BANDS"      ) run_bands    ;;
+          "DOS"        ) run_dos      ;;
           "STATE"      ) ;; # run_state ;;
           "GW"         ) ;;
           *            ) unknown_job ;;
@@ -100,5 +102,7 @@
     count=$((count+1))
   done
 
+  echo
   echo Come back to the home directory $HOMEDIR
   cd $HOMEDIR
+
