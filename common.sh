@@ -128,6 +128,7 @@ unknown_job() {
 
 vasp_run() {
   echo $VASP_PREFIX $VASP "> stdout"
-  $VASP_PREFIX $VASP > $HOMEDIR/${posname}.${job,,}.stdout
+  ljob=`echo $job|awk '{print tolower($0)}'` # to lowercase
+  $VASP_PREFIX $VASP > $HOMEDIR/${posname}.${ljob}.stdout
 }
 
