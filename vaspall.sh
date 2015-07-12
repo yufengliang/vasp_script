@@ -52,52 +52,52 @@
 
   # loop over POSCAR files
   for file in $FILE; do
-   if [ -f $file ]; then
-
-     echo 
-     echo $file_separator
-     echo Processing $file ...
-     echo $file_separator
-
-     posname=`echo $(basename $file)|awk 'BEGIN{FS="."}; {print $1}'`
-     mkdir -p $posname
-     cp $file $posname/POSCAR
-     cd $posname
-
-     # construct POTCAR
-     shopt -s nocasematch
-     case $JOB in
-       *"RELAX"*|*"RELAX_2D"*|*"MD"*|*"SCF"*|*"BANDS"*|*"GW"* ) 
-       build_pseudo ;;
-     esac
-     shopt -u nocasematch
-
-     # reset variables according to $job
-     reset_variables
-
-     # loop over the job sequence
-     for job in $JOB; do
-       shopt -s nocasematch
-       case $job in
-         "RELAX"      ) run_relax    ;;
-         "RELAX_2D"   ) ;;
-         "MD"         ) ;;
-         "SCF"        ) run_scf      ;;
-         "BANDS"      ) run_bands    ;;
-         "STATE"      ) ;; # run_state ;;
-         "GW"         ) ;;
-         *            ) unknown_job ;;
-       esac
-       shopt -u nocasematch
-     done
-
-     cd ..
-     echo Done processing $file.
-
-   else
-     echo Cannot find the poscar file $file. Skit it !
-   fi
-   count=$((count+1))
+    if [ -f $file ]; then
+ 
+      echo 
+      echo $file_separator
+      echo Processing $file ...
+      echo $file_separator
+ 
+      posname=`echo $(basename $file)|awk 'BEGIN{FS="."}; {print $1}'`
+      mkdir -p $posname
+      cp $file $posname/POSCAR
+      cd $posname
+ 
+      # construct POTCAR
+      shopt -s nocasematch
+      case $JOB in
+        *"RELAX"*|*"RELAX_2D"*|*"MD"*|*"SCF"*|*"BANDS"*|*"GW"* ) 
+        build_pseudo ;;
+      esac
+      shopt -u nocasematch
+ 
+      # reset variables according to $job
+      reset_variables
+ 
+      # loop over the job sequence
+      for job in $JOB; do
+        shopt -s nocasematch
+        case $job in
+          "RELAX"      ) run_relax    ;;
+          "RELAX_2D"   ) ;;
+          "MD"         ) ;;
+          "SCF"        ) run_scf      ;;
+          "BANDS"      ) run_bands    ;;
+          "STATE"      ) ;; # run_state ;;
+          "GW"         ) ;;
+          *            ) unknown_job ;;
+        esac
+        shopt -u nocasematch
+      done
+ 
+      cd ..
+      echo Done processing $file.
+ 
+    else
+      echo Cannot find the poscar file $file. Skit it !
+    fi
+    count=$((count+1))
   done
 
   echo Come back to the home directory $HOMEDIR
