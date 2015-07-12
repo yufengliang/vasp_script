@@ -1,6 +1,7 @@
 #!/bin/bash
 
-function relax_incar_gen() {
+relax_incar_gen() {
+
   cat > INCAR << EOF
 # Job Control
 SYSTEM      =   $posname
@@ -27,7 +28,7 @@ EOF
   clean_incar INCAR
 }
 
-function run_relax() {
+run_relax() {
 
   echo $job_separator
   echo "Job = $job"

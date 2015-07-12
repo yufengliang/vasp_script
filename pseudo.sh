@@ -1,6 +1,6 @@
 #!bin/bash
 
-function build_pseudo() {
+build_pseudo() {
 
   # Assuming all the elements on the 6th row
   ELEM=`sed -n '6p' POSCAR`

@@ -6,7 +6,7 @@ bands_done_msg="aborting loop because EDIFF is reached"
 file_separator="======================================================================"
 job_separator="----------------------------------------------------------------------"
 
-function clean_incar() {
+clean_incar() {
 # Delete/Comment out the empty assignment
  local incar=$1
  # if RHS of = is empty and the line does not begin with "!", then comment the line
@@ -15,7 +15,7 @@ function clean_incar() {
  rm $$
 }
 
-function reset_variables() {
+reset_variables() {
 
 # Electronic Relaxation
 
@@ -122,11 +122,11 @@ function filesize() {
   ls -lh $1|awk '{print $5}'
 }
 
-function unknown_job() {
+unknown_job() {
   echo "Unknown job $job. Skip it !"
 }
 
-function vasp_run() {
+vasp_run() {
   echo $VASP_PREFIX $VASP "> stdout"
   $VASP_PREFIX $VASP > stdout
   cp stdout $HOMEDIR/${posname}.${job,,}.stdout

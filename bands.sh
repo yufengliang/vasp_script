@@ -1,6 +1,7 @@
 #!bin/bash
 
-function bands_incar_gen() {
+bands_incar_gen() {
+
   cat > INCAR << EOF
 # Job Control
 SYSTEM      =   $posname
@@ -11,7 +12,7 @@ EOF
 
 }
 
-function run_bands() {
+run_bands() {
 
   echo $job_separator 
   echo "Job = $job"

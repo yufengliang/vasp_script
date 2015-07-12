@@ -1,6 +1,7 @@
 #!bin/bash
 
-function scf_incar_gen() {
+scf_incar_gen() {
+
   cat > INCAR << EOF
 # Job Control
 SYSTEM      =   $posname
@@ -14,7 +15,7 @@ EOF
 
 }
 
-function run_scf() {
+run_scf() {
  
   echo $job_separator 
   echo "Job = $job"
