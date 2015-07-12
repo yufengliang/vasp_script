@@ -128,7 +128,6 @@ unknown_job() {
 
 vasp_run() {
   echo $VASP_PREFIX $VASP "> stdout"
-  $VASP_PREFIX $VASP > stdout
-  cp stdout $HOMEDIR/${posname}.${job,,}.stdout
+  $VASP_PREFIX $VASP > $HOMEDIR/${posname}.${job,,}.stdout
 }
 
