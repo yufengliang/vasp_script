@@ -1,8 +1,12 @@
 #!/bin/bash
 
 states_incar_gen() {
-  
-  cat > INCAR << EOF
+ 
+  rm -f INCAR
+ 
+  electronic_incar
+
+  cat >> INCAR << EOF
 
 # States
 
@@ -29,7 +33,7 @@ run_states() {
     return
   fi
 
-  mkdir states
+  mkdir -p states
   cd states
 
   if [ $BANDS_OK -eq 0 ]; then
@@ -38,25 +42,26 @@ run_states() {
     return
   fi
 
-  ln ../bands/POSCAR ./
-  ln ../bands/KPOINTS ./
-  ln ../bands/CHGCAR./
-  ln ../bands/WAVECAR ./
+  ln -sf ../bands/POSCAR ./
+  ln -sf ../bands/POTCAR ./
+  ln -sf ../bands/KPOINTS ./
+  ln -sf ../bands/WAVECAR ./
 
   # Setting states variables
   
   # Introducing band index array IFBAND
   # Indices are related to the "fermi level",
   # which is defined as floor(NELECT / 2)
-  if [ -z "$IFBAND" ]; then
-    local NE=`awk '/NELECT/{print $3; exit}' OUTCAR`
-    local HOMOBASE='echo "scale=0;$NE/2"|bc'
-    IBAND_ADD=`echo $IFBAND|awk -v HOMOBASE=$HOMOBASE '{for(i=1;i<=NF;i++)printf "%i ", $i+HOMOBASE}'`
-    IBAND="$IBAND $IBAND_ADD"
+  local NFBAND=$(echo $IFBAND|awk '{print NF}')
+  if [ $NFBAND -gt 0 ]; then
+    local NE=$(awk '/NELECT/{print $3; exit}' ../bands/OUTCAR)
+    local HOMOBASE=$(echo $NE|awk '{printf "%i", $1/2}')
+    local IBAND_ADD=$(echo $IFBAND|awk -v HOMOBASE=$HOMOBASE '{for(i=1;i<=NF;i++)printf "%i ", $i+HOMOBASE}')
+    TMP_IBAND="$TMP_IBAND $IBAND_ADD"
   fi
  
   # NBMOD
-  if [ -z "$NBMOD" ] && [ "$NBMOD" -gt 0 ] ; then
+  if [ ! -z "$NBMOD" ] && [ "$NBMOD" -gt 0 ] ; then
     TMP_NBMOD=""
   fi
 

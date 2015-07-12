@@ -123,8 +123,7 @@ LVTOT       =   $TMP_LVTOT
 LORBIT      =   $TMP_LORBIT
 
 EOF
-  
-  clean_incar INCAR
+
 }
 
 function filesize() {

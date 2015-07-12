@@ -26,6 +26,7 @@ NSW         =   $TMP_NSW
 EOF
 
   clean_incar INCAR
+
 }
 
 run_relax() {

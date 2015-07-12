@@ -13,6 +13,8 @@ EOF
 
   electronic_incar
 
+  clean_incar INCAR
+
 }
 
 run_scf() {
