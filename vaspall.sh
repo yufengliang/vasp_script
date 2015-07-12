@@ -35,12 +35,14 @@
     SCRIPT_ROOT="."
   fi
 
+  # Load your modules
   . $SCRIPT_ROOT/common.sh
   . $SCRIPT_ROOT/pseudo.sh
   . $SCRIPT_ROOT/relax.sh
   . $SCRIPT_ROOT/scf.sh
   . $SCRIPT_ROOT/bands.sh
   . $SCRIPT_ROOT/dos.sh
+  . $SCRIPT_ROOT/states.sh
 
 #  ======================================================================
 #  Run, Forest, Run !
@@ -86,9 +88,9 @@
           "SCF"        ) run_scf      ;;
           "BANDS"      ) run_bands    ;;
           "DOS"        ) run_dos      ;;
-          "STATE"      ) ;; # run_state ;;
+          "STATE"      ) run_states   ;;
           "GW"         ) ;;
-          *            ) unknown_job ;;
+          *            ) unknown_job  ;;
         esac
         shopt -u nocasematch
       done

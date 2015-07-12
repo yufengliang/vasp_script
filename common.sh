@@ -40,6 +40,7 @@ TMP_IVDW=$IVDW
 # Magnetism
 
 TMP_ISPIN=$ISPIN
+TMP_MAGMOM=$MAGMOM
 
 # LDA+U
 
@@ -61,6 +62,14 @@ TMP_ISIF=$ISIF
 TMP_ISYM=$ISYM
 TMP_NSW=$NSW
 
+# States
+
+TMP_IBAND=$IBAND
+TMP_NBMOD=$NBMOD
+TMP_KPUSE=$KPUSE
+TMP_LSEPB=$LSEPB
+TMP_LSEPK=$LSEPK
+
 # Print Control
 
 if [ -z $LVTOT ]; then
@@ -77,7 +86,7 @@ fi
 
 }
 
-function electronic_incar() {
+electronic_incar() {
 
   # Update reset_variables when you edit this
   cat >> INCAR << EOF
