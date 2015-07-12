@@ -52,6 +52,13 @@ run_bands() {
     TMP_SIGMA=$BANDS_SIGMA
   fi
 
+  shopt -s nocasematch
+  if [[ $JOB == *"DOS"* ]]; then
+    # You may need to consider RWIGS later
+    TMP_LORBIT=11
+  fi
+  shopt -u nocasematch
+
   # INCAR
   bands_incar_gen
 
