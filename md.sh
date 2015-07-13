@@ -82,9 +82,13 @@ run_md() {
   fi
 
   # MD Variables
+  TMP_ISIF=
   TMP_LREAL=A
   TMP_NELMIN=4
-  
+  TMP_ALGO="Very Fast"
+  [ -z $MD_ISMEAR ] || TMP_ISMEAR=$MD_ISMEAR
+  [ -z $MD_SIGMA ] || TMP_SIGMA=$MD_SIGMA
+
   # INCAR
   md_incar_gen
 
