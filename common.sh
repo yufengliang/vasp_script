@@ -1,6 +1,7 @@
 #!/bin/bash
 
 relax_done_msg="reached required accuracy - stopping structural energy minimisation"
+md_done_msg="what is this ?"
 scf_done_msg="aborting loop because EDIFF is reached"
 bands_done_msg="aborting loop because EDIFF is reached"
 file_separator="======================================================================"
@@ -36,6 +37,10 @@ TMP_ISMEAR=$ISMEAR
 TMP_SIGMA=$SIGMA
 TMP_LASPH=$LASPH
 TMP_IVDW=$IVDW
+TMP_LREAL=$LREAL
+TMP_ALGO=$ALGO
+TMP_MAXMIX=$MAXMIX
+TMP_NCORE=$NCORE
 
 # Magnetism
 
@@ -70,19 +75,21 @@ TMP_KPUSE=$KPUSE
 TMP_LSEPB=$LSEPB
 TMP_LSEPK=$LSEPK
 
+# Molecular Dynamics
+
+TMP_TEBEG=$TEBEG
+TMP_TEEND=$TEEND
+TMP_SMASS=$SMASS
+TMP_POTIM=$POTIM
+
 # Print Control
 
-if [ -z $LVTOT ]; then
-TMP_LVTOT=.FALSE.
-else
+TMP_LCHARG=$LCHARG
+TMP_LWAVE=$LWAVE
 TMP_LVTOT=$LVTOT
-fi
-
-if [ -z $LORBIT ]; then
-TMP_LORBIT=0
-else
 TMP_LORBIT=$LORBIT
-fi
+TMP_NWRITE=$NWRITE
+TMP_NBLOCK=$NBLOCK
 
 }
 
@@ -99,6 +106,10 @@ ISMEAR      =   $TMP_ISMEAR
 SIGMA       =   $TMP_SIGMA
 LASPH       =   $TMP_LASPH
 IVDW        =   $TMP_IVDW
+LREAL       =   $TMP_LREAL
+ALGO        =   $TMP_ALGO
+MAXMIX      =   $TMP_MAXMIX
+NCORE       =   $TMP_NCORE
 
 # Magnetism
 
@@ -119,8 +130,12 @@ EDIFF       =   $TMP_EDIFF
 
 # Print Control
 
+LCHARG      =   $TMP_LCHARG
+LWAVE       =   $TMP_LWAVE
 LVTOT       =   $TMP_LVTOT
 LORBIT      =   $TMP_LORBIT
+NWRITE      =   $TMP_NWRITE
+NBLOCK      =   $TMP_NBLOCK
 
 EOF
 

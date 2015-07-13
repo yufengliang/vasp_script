@@ -43,6 +43,7 @@
   . $SCRIPT_ROOT/bands.sh
   . $SCRIPT_ROOT/dos.sh
   . $SCRIPT_ROOT/states.sh
+  . $SCRIPT_ROOT/md.sh
 
 #  ======================================================================
 #  Run, Forest, Run !
@@ -50,6 +51,7 @@
 
   count=0
   RELAX_OK=0
+  MD_OK=0
   SCF_OK=0
   BANDS_OK=0
 
@@ -84,7 +86,7 @@
         case $job in
           "RELAX"      ) run_relax    ;;
           "RELAX_2D"   ) ;;
-          "MD"         ) ;;
+          "MD"         ) run_md       ;;
           "SCF"        ) run_scf      ;;
           "BANDS"      ) run_bands    ;;
           "DOS"        ) run_dos      ;;
