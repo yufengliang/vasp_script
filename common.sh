@@ -181,9 +181,14 @@ unknown_job() {
   echo "Unknown job $job. Skip it !"
 }
 
+# to lowercase
+lcase() {
+  echo $@|awk '{print tolower($0)}'
+}
+
 vasp_run() {
   echo $VASP_PREFIX $VASP "> stdout"
-  ljob=`echo $job|awk '{print tolower($0)}'` # to lowercase
+  ljob=$(lcase $job) 
   $VASP_PREFIX $VASP > $HOMEDIR/${posname}.${ljob}.stdout
 }
 

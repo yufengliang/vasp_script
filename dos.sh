@@ -16,13 +16,15 @@ run_dos() {
     echo "BANDS not completed. Go back to check it !"
     cd ../
     return
-  elif [ ! -d $VTSTSCRIPTS ]; then
-    echo "Please specify: VTSTSCRIPTS=/your/vtstscripts/path. "
+  elif [ ! -f $VTSTSCRIPTS/split_dos ]; then
+    echo "Cannot find: $VTSTSCRIPTS/split_dos. Check your variable VTSTSCRIPTS. "
     cd ../
     return
   else
+    ljob=$(lcase $job)
     # Use this temporarily
-    $VTSTSCRIPTS/split_dos
+    echo $VTSTSCRIPTS/split_dos > $HOMEDIR/${posname}.${ljob}.stdout
+    $VTSTSCRIPTS/split_dos > $HOMEDIR/${posname}.${ljob}.stdout
   fi
 
   cd ../
