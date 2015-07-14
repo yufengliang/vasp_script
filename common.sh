@@ -96,6 +96,12 @@ TMP_LORBIT=$LORBIT
 TMP_NWRITE=$NWRITE
 TMP_NBLOCK=$NBLOCK
 
+# DOSCAR
+
+TMP_EMIN=$EMIN
+TMP_EMAX=$EMAX
+TMP_NEDOS=$NEDOS
+
 }
 
 electronic_incar() {
@@ -155,6 +161,12 @@ LVTOT       =   $TMP_LVTOT
 LORBIT      =   $TMP_LORBIT
 NWRITE      =   $TMP_NWRITE
 NBLOCK      =   $TMP_NBLOCK
+
+# DOSCAR
+
+EMIN        =   $TMP_EMIN
+EMAX        =   $TMP_EMAX
+NEDOS       =   $TMP_NEDOS
 
 EOF
 
