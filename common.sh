@@ -41,6 +41,7 @@ TMP_LREAL=$LREAL
 TMP_ALGO=$ALGO
 TMP_MAXMIX=$MAXMIX
 TMP_NCORE=$NCORE
+TMP_NPAR=$NPAR
 
 # Magnetism
 
@@ -110,6 +111,7 @@ LREAL       =   $TMP_LREAL
 ALGO        =   $TMP_ALGO
 MAXMIX      =   $TMP_MAXMIX
 NCORE       =   $TMP_NCORE
+NPAR        =   $TMP_NPAR
 
 # Magnetism
 

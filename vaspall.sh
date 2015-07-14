@@ -80,6 +80,13 @@
       # reset variables according to $job
       reset_variables
  
+      # setting parallelism
+      shopt -s nocasematch
+      case $job in
+        *"RELAX"*|"MD"|"SCF"|*"BANDS"*);; # TMP_NPAR=$NEED_TO_DEALT_WITH_LATER
+      esac 
+      shopt -u nocasematch
+
       # loop over the job sequence
       for job in $JOB; do
         shopt -s nocasematch
