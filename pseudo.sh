@@ -2,10 +2,10 @@
 
 build_pseudo() {
 
-  # Assuming all the elements on the 6th row
-  ELEM=`sed -n '6p' POSCAR`
-  # Assuming #atoms on the 7th row
-  ENUM=`sed -n '7p' POSCAR`
+  # Grep the element list
+  ELEM=$(grep_elem)
+  # Grep the number-of-atom list
+  ENUM=$(grep_enum)
   # Split it into an array
   IFS=" "; read -a enum <<< $ENUM
 

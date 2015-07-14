@@ -1,11 +1,15 @@
 #!/bin/bash
 
+# messages and texts
 relax_done_msg="reached required accuracy - stopping structural energy minimisation"
 md_done_msg="what is this ?"
 scf_done_msg="aborting loop because EDIFF is reached"
 bands_done_msg="aborting loop because EDIFF is reached"
 file_separator="======================================================================"
 job_separator="----------------------------------------------------------------------"
+
+# 
+U_LIST=$SCRIPT_ROOT/u_list.dat
 
 clean_incar() {
 # Delete/Comment out the empty assignment
@@ -96,6 +100,19 @@ TMP_NBLOCK=$NBLOCK
 
 electronic_incar() {
 
+  # Generate LDAUU array from u_list.dat automatically
+  shopt -s nocasematch
+  if [ "$USE_U_LIST" == ".TRUE." ]; then
+    TMP_LDAUU=""
+    echo $U_LIST
+    for elem in $ELEM; do
+      local U=$( awk -v elem=$elem '$1~elem{print $2}' $U_LIST )
+      [ -z $U ] && U=0.0
+      TMP_LDAUU="$TMP_LDAUU $U"
+    done
+  fi
+  shopt -u nocasematch 
+
   # Update reset_variables when you edit this
   cat >> INCAR << EOF
 # Electronic Relaxation
@@ -156,5 +173,15 @@ vasp_run() {
   echo $VASP_PREFIX $VASP "> stdout"
   ljob=`echo $job|awk '{print tolower($0)}'` # to lowercase
   $VASP_PREFIX $VASP > $HOMEDIR/${posname}.${ljob}.stdout
+}
+
+function grep_elem() {
+  # This might not be robust enough for a more free-style POSCAR file
+  sed -n '6p' POSCAR
+}
+
+function grep_enum() {
+  # This might not be robust enough for a more free-style POSCAR file
+  sed -n '7p' POSCAR
 }
 
