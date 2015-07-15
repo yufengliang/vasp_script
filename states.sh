@@ -36,11 +36,13 @@ run_states() {
   mkdir -p states
   cd states
 
-  if [ $BANDS_OK -eq 0 ]; then
+  shopt -s nocasematch
+  if [[ $JOB == *"BANDS"* ]] && [ $BANDS_OK -eq 0 ]; then
     echo "BANDS not completed. Go back to check it !"
     cd ../
     return
   fi
+  shopt -u nocasematch
 
   ln -sf ../bands/POSCAR ./
   ln -sf ../bands/POTCAR ./
