@@ -70,6 +70,44 @@ run_states() {
   # RUN !
   vasp_run
  
+  # ISPIN = 1
+
+  if [ $TMP_ISPIN -eq 1 ]; then
+    for parchg in PARCHG*; do
+      local num=$( echo $parchg|awk 'BEGIN{FS="."}; {print $2}' )
+      mv $parchg PARCHG.$num.CHGCAR
+    done
+    cd ../
+    return
+  fi
+  
+  # ISPIN = 2
+ 
+  local chgsplit=$VTSTSCRIPTS/chgsplit.sh
+  local chgsum=$VTSTSCRIPTS/chgsumf.pl
+
+  if [ ! -f $chgsplit ]; then
+    echo "Cannot find: $chgsplit. Check your variable VTSTSCRIPTS. "
+    cd ../
+    return
+  fi
+
+  if [ ! -f $chgsum ]; then
+    echo "Cannot find: $chgsum. Check your variable VTSTSCRIPTS. "
+    cd ../
+    return
+  fi
+
+  for parchg in PARCHG*; do
+    $chgsplit $parchg
+    local num=$( echo $parchg|awk 'BEGIN{FS="."}; {print $2}' )
+    $chgsum cf1 cf2 1.0  1.0
+    mv CHGCAR_sum PARCHG_UP.$num.CHGCAR
+    $chgsum cf1 cf2 1.0 -1.0
+    mv CHGCAR_sum PARCHG_DOWN.$num.CHGCAR
+    rm cf1 cf2
+  done
+
   cd ../
     
 }
