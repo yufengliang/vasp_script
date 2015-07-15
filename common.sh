@@ -197,7 +197,8 @@ lcase() {
 vasp_run() {
   echo $VASP_PREFIX $VASP "> stdout"
   ljob=$(lcase $job)
-  $VASP_PREFIX $VASP > $HOMEDIR/${posname}.${ljob}.stdout
+  stdout=$HOMEDIR/${posname}.${ljob}.stdout
+  $VASP_PREFIX $VASP > $stdout
 }
 
 function grep_elem() {

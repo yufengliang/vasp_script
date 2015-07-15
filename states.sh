@@ -103,9 +103,9 @@ run_states() {
   for parchg in PARCHG*; do
     $chgsplit $parchg
     local num=$( echo $parchg|awk 'BEGIN{FS="."}; {print $2}' )
-    $chgsum cf1 cf2 1.0  1.0
+    $chgsum cf1 cf2 1.0  1.0 > $stdout
     mv CHGCAR_sum PARCHG_UP.$num.CHGCAR
-    $chgsum cf1 cf2 1.0 -1.0
+    $chgsum cf1 cf2 1.0 -1.0 > $stdout
     mv CHGCAR_sum PARCHG_DOWN.$num.CHGCAR
     rm cf1 cf2
   done
