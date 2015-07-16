@@ -35,6 +35,7 @@ else
 TMP_NELECT=`echo "scale=5; $NELECT+$EXTRA_ELECT"|bc`
 fi
 
+TMP_NBANDS=$NBANDS
 TMP_PREC=$PREC
 TMP_ENCUT=$ENCUT
 TMP_ISMEAR=$ISMEAR
@@ -110,6 +111,12 @@ TMP_NEDOS=$NEDOS
 
 electronic_incar() {
 
+  # If band factor is defined
+  if [ ! -z "$NBANDS_FAC" ]; then
+    TMP_TMP_NBANDS=$(echo "scale=0; $NBANDS_FAC*$TMP_NELECT/2"|bc)
+    [ -z "$TMP_TMP_NBANDS" ] || TMP_NBANDS=$TMP_TMP_NBANDS
+  fi
+
   # Generate LDAUU array from u_list.dat automatically
   shopt -s nocasematch
   if [ "$USE_U_LIST" == ".TRUE." ]; then
@@ -128,14 +135,17 @@ electronic_incar() {
 # Electronic Relaxation
 
 NELECT      =   $TMP_NELECT
+NBANDS      =   $TMP_NBANDS
 PREC        =   $TMP_PREC
 ENCUT       =   $TMP_ENCUT
 ISMEAR      =   $TMP_ISMEAR
 SIGMA       =   $TMP_SIGMA
 LASPH       =   $TMP_LASPH
 IVDW        =   $TMP_IVDW
+
 LREAL       =   $TMP_LREAL
 ALGO        =   $TMP_ALGO
+
 MAXMIX      =   $TMP_MAXMIX
 NCORE       =   $TMP_NCORE
 NPAR        =   $TMP_NPAR
