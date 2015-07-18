@@ -51,7 +51,9 @@ run_relax() {
     cp ../POSCAR ./
   # restart
   else
-    echo "Run $job from last checkpoint."
+    local lnum=$(get_file_largest_index OUTCAR)
+    echo "Run $job from last checkpoint. $lnum runs before."
+    # If you have an OUTCAR
     if [ -f OUTCAR ]; then
       hit=`grep "${relax_done_msg}" OUTCAR|wc -l`
       if [ $hit -ge 1 ]; then
@@ -60,16 +62,18 @@ run_relax() {
         cd ../
         return
       # Make sure CONTCAR exist and is something
-      elif [ -f CONTCAR ]; then
+      elif [ -f CONTCAR ] && [ -s CONTCAR ]; then
         echo "Continue $job from CONTCAR."
         ISTART=1
         ICHARG=1
         INIWAV=1
         cp CONTCAR POSCAR
+        cp CONTCAR CONTCAR-$lnum
       else
         echo "Cannot find a valid CONTCAR. Start from scratch."
         cp ../POSCAR ./
       fi
+      cp OUTCAR OUTCAR-$lnum
     else
       echo "Cannot find OUTCAR. Start from scratch."
       cp ../POSCAR ./

@@ -227,3 +227,8 @@ function grep_enum() {
   sed -n '7p' POSCAR
 }
 
+function get_file_largest_index() {
+  # get the largest index from the file with format file-index
+  local filename=$1
+  find . -maxdepth 1 -name "$filename-*" -type f | awk 'BEGIN{lnum=0;FS="-"}{if ($2>lnum) lnum=$2}END{print lnum}'
+}
