@@ -25,14 +25,14 @@ reset_variables() {
 # Electronic Relaxation
 
 # TMP_NELECT
-if [ -z $EXTRA_ELECT ]; then
-EXTRA_ELECT=0.0
+if [ -z $EXTRA_NELECT ]; then
+EXTRA_NELECT=0.0
 fi
 
 if [ -z $NELECT ]; then
-TMP_NELECT=`echo "scale=5; $NELECT_COUNT+$EXTRA_ELECT"|bc`
+TMP_NELECT=`echo "scale=5; $NELECT_COUNT+$EXTRA_NELECT"|bc`
 else
-TMP_NELECT=`echo "scale=5; $NELECT+$EXTRA_ELECT"|bc`
+TMP_NELECT=`echo "scale=5; $NELECT+$EXTRA_NELECT"|bc`
 fi
 
 TMP_NBANDS=$NBANDS
@@ -232,3 +232,14 @@ function get_file_largest_index() {
   local filename=$1
   find . -maxdepth 1 -name "$filename-*" -type f | awk 'BEGIN{lnum=0;FS="-"}{if ($2>lnum) lnum=$2}END{print lnum}'
 }
+
+backup() {
+  file=$1
+  # need to figure largest index first
+  if [ "$lnum" -gt 0 ]; then
+    # If the last backuped file is the same as the new one, then don't
+    cmp --silent $file $file-$lnum && return
+  fi
+  cp $file $file-$((lnum+1))
+}
+
