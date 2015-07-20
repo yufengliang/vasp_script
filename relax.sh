@@ -49,7 +49,7 @@ run_relax() {
   if [ "${job:0:1}" == "R" ]; then
     echo "Run $job from scratch."
     cp ../POSCAR ./
-    rm -f OUTCAR* CONTCAR* WAVECAR*
+    rm -f OUTCAR* CONTCAR* WAVECAR* CHGCAR*
   # restart
   else
     local lnum=$(get_file_largest_index OUTCAR)
@@ -71,6 +71,8 @@ run_relax() {
         # continue to relax
         cp CONTCAR POSCAR
         backup CONTCAR
+        backup XDATCAR
+        backup OSZICAR
       else
         echo "Cannot find a valid CONTCAR. Start from scratch."
         cp ../POSCAR ./
