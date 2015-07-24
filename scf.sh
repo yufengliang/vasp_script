@@ -46,7 +46,7 @@ run_scf() {
   # default: starting from scratch
   ISTART=0
   ICHARG=2
-  INIWAV=1
+  INIWAV=0
 
   # INCAR
   # from scratch
