@@ -50,15 +50,16 @@
 #  ======================================================================
 
   count=0
-  RELAX_OK=0
-  MD_OK=0
-  SCF_OK=0
-  BANDS_OK=0
 
   # loop over POSCAR files
   for file in $FILE; do
     if [ -f $file ]; then
  
+      RELAX_OK=0
+      MD_OK=0
+      SCF_OK=0
+      BANDS_OK=0
+
       echo 
       echo $file_separator
       echo Processing $file ...
