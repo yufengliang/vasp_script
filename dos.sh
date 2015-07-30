@@ -12,7 +12,8 @@ run_dos() {
 
   cd bands
 
-  if [ $BANDS_OK -eq 0 ]; then
+  shopt -s nocasematch
+  if [[ $JOB == *"bands"* ]] && [ $BANDS_OK -eq 0 ]; then
     echo "BANDS not completed. Go back to check it !"
     cd ../
     return
@@ -26,6 +27,7 @@ run_dos() {
     echo $VTSTSCRIPTS/split_dos > $HOMEDIR/${posname}.${ljob}.stdout
     $VTSTSCRIPTS/split_dos > $HOMEDIR/${posname}.${ljob}.stdout
   fi
+  shopt -u nocasematch
 
   cd ../
 }
