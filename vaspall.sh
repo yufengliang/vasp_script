@@ -5,6 +5,7 @@
 
   # Input block
   INPBLK=vasp.in
+  [ $# -eq 1 ] && INPBLK=$1
 
   # Obtain the current directory
   if [[ -n $PBS_O_WORKDIR ]]; then

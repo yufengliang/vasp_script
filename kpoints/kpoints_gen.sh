@@ -22,18 +22,18 @@ function kdis {
   '
 }
 
-function kpoints_gen {
+kpoints_gen() {
 
-  # Read in the standard kpoints generation file (like CUB) and
-  # generate the KPOINTS for linear band structure calculation
+# Read in the standard kpoints generation file (like CUB) and
+# generate the KPOINTS for linear band structure calculation
 
-  local input=$1
-  local nk=$2
-  local kpoints=$3
-  local kline=$4
+local input=$1    # input file
+local nk=$2       # How many k-points do you want in total ?
+local kpoints=$3  # output file for KPOINTS in vasp
+local kline=$4    # 
   
   if [ $# != 4 ]; then
-    echo "usage: kpoints_gen.sh kpoints.in #k kpoints.out kline.dat"
+    echo "usage: $0 kpoints.in #k kpoints.out kline.dat"
     exit
   fi
   
