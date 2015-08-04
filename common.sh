@@ -47,6 +47,7 @@ TMP_ALGO=$ALGO
 TMP_MAXMIX=$MAXMIX
 TMP_NCORE=$NCORE
 TMP_NPAR=$NPAR
+TMP_KPAR=$KPAR
 
 # Magnetism
 
@@ -152,6 +153,7 @@ ALGO        =   $TMP_ALGO
 MAXMIX      =   $TMP_MAXMIX
 NCORE       =   $TMP_NCORE
 NPAR        =   $TMP_NPAR
+KPAR        =   $TMP_KPAR
 
 # Magnetism
 

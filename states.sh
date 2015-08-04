@@ -4,13 +4,15 @@ states_incar_gen() {
  
   rm -f INCAR
  
-  electronic_incar
+# You don't need this ?
+#  electronic_incar
 
   cat >> INCAR << EOF
 
 # States
 
 LPARD       =    .TRUE.
+ISPIN       =    $TMP_ISPIN
 IBAND       =    $TMP_IBAND
 NBMOD       =    $TMP_NBMOD
 KPUSE       =    $TMP_KPUSE
