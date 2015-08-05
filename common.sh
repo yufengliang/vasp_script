@@ -3,6 +3,7 @@
 # messages and texts
 relax_done_msg="reached required accuracy - stopping structural energy minimisation"
 md_done_msg="what is this ?"
+neb_done_msg="what is this ?"
 scf_done_msg="aborting loop because EDIFF is reached"
 bands_done_msg="aborting loop because EDIFF is reached"
 file_separator="======================================================================"
@@ -94,6 +95,11 @@ TMP_TEBEG=$TEBEG
 TMP_TEEND=$TEEND
 TMP_SMASS=$SMASS
 TMP_POTIM=$POTIM
+
+# NEB
+
+TMP_IMAGES=$IMAGES
+TMP_SPRING=$SPRING
 
 # Print Control
 

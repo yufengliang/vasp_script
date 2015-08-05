@@ -45,6 +45,7 @@
   . $SCRIPT_ROOT/dos.sh
   . $SCRIPT_ROOT/states.sh
   . $SCRIPT_ROOT/md.sh
+  . $SCRIPT_ROOT/neb.sh
 
 #  ======================================================================
 #  Run, Forest, Run !
@@ -66,6 +67,7 @@
       echo Processing $file ...
       echo $file_separator
  
+      # extract the poscar name from the POSCAR file
       posname=`echo $(basename $file)|awk 'BEGIN{FS="."}; {print $1}'`
       mkdir -p $posname
       cp $file $posname/POSCAR
@@ -74,7 +76,7 @@
       # construct POTCAR
       shopt -s nocasematch
       case $JOB in
-        *"RELAX"*|*"RELAX_2D"*|*"MD"*|*"SCF"*|*"BANDS"*|*"GW"* ) 
+        *"RELAX"*|*"RELAX_2D"*|*"MD"*|*"SCF"*|*"BANDS"*|*"GW"*|*"NEB"* ) 
         build_pseudo ;;
       esac
       shopt -u nocasematch
@@ -96,6 +98,7 @@
           "RELAX"      ) run_relax    ;;
           "RELAX_2D"   ) ;;
           "MD"         ) run_md       ;;
+          "NEB"        ) run_neb      ;;
           "SCF"        ) run_scf      ;;
           "BANDS"      ) run_bands    ;;
           "DOS"        ) run_dos      ;;

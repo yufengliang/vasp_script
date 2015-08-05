@@ -27,6 +27,7 @@ POTIM       =   $TMP_POTIM
 
 ISYM        =   0
 NSW         =   $TMP_NSW
+ISIF        =   $TMP_ISIF
 
 EOF
 
@@ -46,7 +47,7 @@ run_md() {
   # default: starting from scratch
   ISTART=0
   ICHARG=2
-  INIWAV=1
+  INIWAV=0
 
   # POSCAR and INCAR
   shopt -u nocasematch # Yes, case matters here
