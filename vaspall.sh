@@ -17,7 +17,13 @@
         RUNENV=SLURM
         HOMEDIR=$SLURM_SUBMIT_DIR
         PPN=$SLURM_NPROCS
-        VASP_PREFIX="mpirun -np $PPN"
+	if [ $(env | grep vulcan | wc -l) -gt 0 ]; then
+	# if we are on vulcan (need a more robust way)
+        	VASP_PREFIX="mpirun -np $PPN"
+	else
+	# if we are using standardized SLURM
+        	VASP_PREFIX="srun -n $PPN"
+	fi
   else
         HOMEDIR="./"
         PPN=1
