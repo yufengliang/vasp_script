@@ -19,6 +19,7 @@ build_pseudo() {
   for elem in $ELEM; do
     count=$((count+1))
     local pseudo=$PSEUDO_DIR/${elem}${PSEUDO_POSTFIX}
+    
     if [ -f $pseudo/POTCAR ]; then 
       echo element $elem x ${enum[count-1]}: POTCAR in ${elem}${PSEUDO_POSTFIX}
       elect=`sed -n '2p' $pseudo/POTCAR`
