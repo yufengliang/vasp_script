@@ -50,7 +50,7 @@ TMP_NCORE=$NCORE
 TMP_NPAR=$NPAR
 TMP_KPAR=$KPAR
 
-# Magnetism
+# Magnetism & Spin-Orbit Coupling
 
 TMP_ISPIN=$ISPIN
 TMP_MAGMOM=$MAGMOM
@@ -58,6 +58,14 @@ TMP_AMIX=$AMIX
 TMP_BMIX=$BMIX
 TMP_AMIX_MAG=$AMIX_MAG
 TMP_BMIX_MAG=$BMIX_MAG
+
+TMP_LSORBIT=$LSORBIT
+TMP_LNONCOLLINEAR=$LNONCOLLINEAR                                         
+TMP_GGA_COMPAT=$GGA_COMPAT
+TMP_SAXIS=$SAXIS
+TMP_LCALCPOL=$LCALCPOL
+TMP_DIPOL=$DIPOL
+TMP_LMAXMIX=$LMAXMIX
 
 # LDA+U
 
@@ -161,7 +169,7 @@ NCORE       =   $TMP_NCORE
 NPAR        =   $TMP_NPAR
 KPAR        =   $TMP_KPAR
 
-# Magnetism
+# Magnetism & Spin-Orbit Coupling
 
 ISPIN       =   $TMP_ISPIN
 MAGMOM      =   $TMP_MAGMOM
@@ -169,6 +177,14 @@ AMIX        =   $TMP_AMIX
 BMIX        =   $TMP_BMIX
 AMIX_MAG    =   $TMP_AMIX_MAG
 BMIX_MAG    =   $TMP_BMIX_MAG
+
+LSORBIT        =  $TMP_LSORBIT
+LNONCOLLINEAR  =  $TMP_LNONCOLLINEAR                                         
+GGA_COMPAT     =  $TMP_GGA_COMPAT
+SAXIS          =  $TMP_SAXIS
+LCALCPOL       =  $TMP_LCALCPOL
+DIPOL          =  $TMP_DIPOL
+LMAXMIX        =  $TMP_LMAXMIX
 
 # LDA+U
 
