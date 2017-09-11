@@ -1,6 +1,9 @@
 #!/bin/bash
 
-  [ $# -ne 4 ] && exit
+  if [ $# -ne 4 ]; then
+    echo "usage: supercell.sh nx ny nz your_poscar"
+    exit
+  fi
 
   # input: coord.dat (in crystal coordinate) output: supercell
   fil=$4
