@@ -1,0 +1,101 @@
+# PATH: need absolute path
+
+SCRIPT_ROOT=$HOME/vasp_script
+VTSTSCRIPTS=$HOME/vtstscripts-902
+
+# My Mac
+# PSEUDO_DIR=$HOME/mystudio/Computational_Facilities/vasp/pseudopotentials/5.3.5/PBE
+# SCS
+#PSEUDO_DIR=$HOME/vasp/pseudopotentials/5.3.5/PBE
+# NERSC
+PSEUDO_DIR=$HOME/vasp.5.3.edison/pseudopotentials/potpaw_PBE.52
+
+PSEUDO_POSTFIX=
+
+# My Mac: a toy vasp
+#VASP=/Users/yufengliang/mystudio/Computational_Facilities/vasp_script/vasp.x
+# NERSC
+#VASP=$HOME/vasp.5.3.edison/vasp
+VASP=vasp
+
+# JOB
+
+JOB="relax scf bands dos"
+FILE="*.POSCAR.vasp"
+
+# PARAMETER
+
+# Electronic Relaxation
+
+NBANDS_FAC=3
+NELECT=
+PREC=Normal
+ENCUT=500  
+ISMEAR=-1
+SIGMA=0.03
+LASPH=
+IVDW=
+
+# Magnetism 
+# ISPIN=2
+MAGMOM=
+
+# LDA+U
+
+LDAU=.TRUE.
+LDAUTYPE=2
+#LDAUU="0.0 0.0 0.0"
+USE_U_LIST=.TRUE.
+
+# K-points
+KPOINTS="KPOINTS
+ 0
+Monkorst
+ 6 6 6
+ 0 0 0
+"
+# RELAX_KPONTS=""
+# SCF_KPOINTS=""
+BANDS_KPOINTS="KPOINTS
+ 0
+Gamma
+ 24 24 24
+  0  0  0
+"
+
+# Electronic Relaxation Control
+NELM=40
+NELMIN=1
+EDIFF=0.0001
+
+# DOSCAR
+EMIN=-5
+EMAX=15
+NEDOS=1000
+
+# Ionic Relaxation
+
+IBRION=1
+EDIFFG=-0.01
+ISIF=2
+ISYM=1
+NSW=100
+
+# Partial decomposed charge density
+IFBAND="-2 -1 0 1 2"
+KPUSE=1
+LSEPB=.TRUE.
+LSEPK=.TRUE.
+
+# MD
+
+MD_ISMEAR=-1
+MD_SIGMA=0.026
+TEBEG=300
+TEEND=300
+
+# -3: NVE, -2: v0 kept, -1: scaled to T, >0: Nose 
+SMASS=3
+POTIM=1
+NBLOCK=1
+
