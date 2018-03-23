@@ -75,6 +75,10 @@ TMP_LDAUL=$LDAUL
 TMP_LDAUU=$LDAUU
 TMP_LDAUJ=$LDAUJ
 
+# HSE
+
+TMP_HSE=$HSE
+
 # Electronic Relaxation Control
 
 TMP_NELM=$NELM
@@ -193,6 +197,10 @@ LDAUTYPE    =   $TMP_LDAUTYPE
 LDAUL       =   $TMP_LDAUL
 LDAUU       =   $TMP_LDAUU
 LDAUJ       =   $TMP_LDAUJ
+
+# HSE
+
+$TMP_HSE
 
 # Electronic Relaxation Control
 
